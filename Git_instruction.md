@@ -157,14 +157,30 @@ git merge <название выбранной ветки>
 
 ### 10.1. Возможные ошибки при слиянии
 
-Git не даст удалить ветку, если предварительно не было выполнено слияние. При попытке удаления появится ошибка и подсказка, что можно сделать, если вы все же хотите удалить ветку без слияния:
-
+* Git не даст удалить ветку, если предварительно не было выполнено слияние. При попытке удаления появится ошибка и подсказка, что можно сделать, если вы все же хотите удалить ветку без слияния:
+```
     error: The branch 'Mistakes' is not fully merged.
     If you are sure you want to delete it, run 'git branch -D Mistakes'.
+```
 
-Git не сможет выполнить слияние, если в текущей ветке master есть несохраненные изменения:
+* Так же Git не даст удалить ветку, если после выполненной команды `merge` изменения в основной ветке (куда заливались изменения) не были сохранены:
 
+```
+    error: The branch 'Mistakes' is not fully merged.
+    If you are sure you want to delete it, run 'git branch -D Mistakes'.
+```
+
+* Git не сможет выполнить слияние, если в текущей ветке master есть несохраненные изменения:
+```
     no changes added to commit (use "git add" and/or "git commit -a")
+```
+* Если в новой ветке есть несохраненные изменения, при переходе на главную ветку Git выдаст ошибку:
+```
+    error: Your local changes to the following files would be overwritten by checkout:
+        Git_instruction.md
+    Please commit your changes or stash them before you switch branches.
+```
+, поэтому сохраняйте изменения в новых ветках заблаговременно.
 
 
 ## NN. Если вдруг ...
